@@ -1,0 +1,97 @@
+<!-- Dashboard -->
+<div class="menu-item">
+    <a
+            class="menu-link without-sub"
+            routerLink="/dashboard"
+            routerLinkActive="active"
+    ><span class="menu-icon">
+      <span
+              [inlineSVG]="'./assets/media/icons/duotune/art/art002.svg'"
+              class="svg-icon svg-icon-2"
+      ></span>
+    </span>
+        <span class="menu-title" translate="MENU.DASHBOARD"></span
+        ></a>
+</div>
+
+<div class="menu-item">
+    <div class="menu-content pt-8 pb-2">
+    <span class="menu-section text-muted text-uppercase fs-8 ls-1">{{ 'MENU.SECTIONS.ARTICLES.TITLE' | translate }}</span
+    >
+    </div>
+</div>
+<div class="menu-item">
+    <a class="menu-link without-sub" routerLink="/article/sections" (click)="redirectTo('/article/sections')" routerLinkActive="active">
+      <span class="menu-icon">
+        <span [inlineSVG]="'./assets/media/icons/duotune/general/gen025.svg'"
+              class="svg-icon svg-icon-2"></span>
+      </span>
+        <span class="menu-title">{{ 'MENU.SECTIONS.ARTICLES.SECTIONS' | translate }}</span>
+    </a>
+    <a class="menu-link without-sub" routerLink="/article/templates" (click)="redirectTo('/article/templates')" routerLinkActive="active">
+      <span class="menu-icon">
+        <span [inlineSVG]="'./assets/media/icons/duotune/layouts/lay001.svg'"
+              class="svg-icon svg-icon-2"></span>
+      </span>
+        <span class="menu-title">{{ 'MENU.SECTIONS.ARTICLES.TEMPLATES' | translate }}</span>
+    </a>
+    <a class="menu-link without-sub" routerLink="/article/layouts" (click)="redirectTo('/article/layouts')" routerLinkActive="active">
+      <span class="menu-icon">
+        <span [inlineSVG]="'./assets/media/icons/duotune/layouts/lay009.svg'"
+              class="svg-icon svg-icon-2"></span>
+      </span>
+        <span class="menu-title">{{ 'MENU.SECTIONS.ARTICLES.LAYOUTS' | translate }}</span>
+    </a>
+    <a class="menu-link without-sub" routerLink="/article/items" (click)="redirectTo('/article/items')" routerLinkActive="active">
+      <span class="menu-icon">
+        <span [inlineSVG]="'./assets/media/icons/duotune/general/gen017.svg'"
+              class="svg-icon svg-icon-2"></span>
+      </span>
+        <span class="menu-title">{{ 'MENU.SECTIONS.ARTICLES.ITEMS' | translate }}</span>
+    </a>
+</div>
+
+<div class="menu-item">
+    <div class="menu-content pt-8 pb-2">
+    <span class="menu-section text-muted text-uppercase fs-8 ls-1">{{ 'MENU.SECTIONS.REFERENCES.TITLE' | translate }}</span
+    >
+    </div>
+</div>
+<div class="menu-item">
+    <a class="menu-link without-sub" routerLink="/references/items" (click)="redirectTo('/references/items')" routerLinkActive="active">
+      <span class="menu-icon">
+        <span [inlineSVG]="'./assets/media/icons/duotune/abstract/abs036.svg'"
+              class="svg-icon svg-icon-2"></span>
+      </span>
+        <span class="menu-title">{{ 'MENU.SECTIONS.REFERENCES.ITEMS.TITLE' | translate }}</span>
+    </a>
+    <a class="menu-link without-sub" routerLink="/references/definitions" (click)="redirectTo('/references/definitions')" routerLinkActive="active">
+      <span class="menu-icon">
+        <span [inlineSVG]="'./assets/media/icons/duotune/abstract/abs037.svg'"
+              class="svg-icon svg-icon-2"></span>
+      </span>
+        <span class="menu-title">{{ 'MENU.SECTIONS.REFERENCES.DEFINITIONS.TITLE' | translate }}</span>
+    </a>
+
+</div>
+<!-- Separator -->
+<!--<div class="menu-item">
+    <div class="menu-content pt-8 pb-2">
+        <span class="menu-section text-muted text-uppercase fs-8 ls-1">
+            {{ 'MENU.SECTIONS.SETTINGS.TITLE' | translate }}
+        </span>
+    </div>
+</div>
+<div class="menu-item">
+    <a class="menu-link without-sub"
+       routerLink="/users"
+       routerLinkActive="active">
+        <span class="menu-icon">
+          <span [inlineSVG]="'./assets/media/icons/duotune/communication/com014.svg'"
+                class="svg-icon svg-icon-2"></span>
+        </span>
+        <span class="menu-title">
+            {{ 'MENU.SECTIONS.USERS' | translate }}
+        </span>
+    </a>
+</div>-->

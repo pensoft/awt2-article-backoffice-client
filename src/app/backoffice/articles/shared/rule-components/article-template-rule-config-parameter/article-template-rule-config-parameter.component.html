@@ -1,0 +1,23 @@
+<div [formGroup]="formGroup">
+    <h5>{{ description }}</h5>
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Value</mat-label>
+                <input matInput formControlName="value" [placeholder]="'Value'" autocomplete="nope" />
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Parameter Name</mat-label>
+                <input matInput formControlName="parameterName" [placeholder]="'Parameter Name'" autocomplete="nope" />
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Amount</mat-label>
+                <input matInput formControlName="amount" [placeholder]="'Amount'" autocomplete="nope" />
+            </mat-form-field>
+        </div>
+    </div>
+</div>

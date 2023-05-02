@@ -1,0 +1,41 @@
+<div [formGroup]="formGroup">
+    <h5>{{ description }}</h5>
+    <div class="row">
+        <div class="col-md-2">
+            <mat-form-field appearance="outline">
+                <mat-label>Min</mat-label>
+                <input matInput formControlName="min" [placeholder]="'Min'" autocomplete="nope" />
+            </mat-form-field>
+        </div>
+        <div class="col-md-2">
+            <mat-form-field appearance="outline">
+                <mat-label>Max</mat-label>
+                <input matInput formControlName="max" [placeholder]="'Max'" autocomplete="nope" />
+            </mat-form-field>
+        </div>
+        <div class="col-md-8">
+            <mat-form-field appearance="outline">
+                <mat-label>Names</mat-label>
+                <input matInput formControlName="names" [placeholder]="'Names'" autocomplete="nope" />
+                <mat-hint>You can put many names, splitting them with pipe (ex.: Chapter I|Main)</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <mat-label>Expressions</mat-label>
+            <div class="ngx-codemirror">
+                <ngx-codemirror
+                        [ngModel]="expressions"
+                        (ngModelChange)="expressionsChange($event)"
+                        [ngModelOptions]="{standalone: true}"
+                        [options]="{
+                                        lineNumbers: true,
+                                        theme: 'eclipse',
+                                        mode: 'javascript'
+                                      }"
+                ></ngx-codemirror>
+            </div>
+        </div>
+    </div>
+</div>

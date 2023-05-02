@@ -1,0 +1,38 @@
+<div class="card">
+    <!-- begin::Header -->
+    <div class="card-header border-0 pt-5">
+        <h3 class="card-title d-flex justify-content-center">
+            <span
+                    [inlineSVG]="'./assets/media/icons/duotune/general/gen025.svg'"
+                    class="svg-icon svg-icon-2x svg-icon-primary me-2"
+            ></span>
+            <span class="card-label fw-bolder fs-3">Sections list</span>
+        </h3>
+        <div class="card-toolbar">
+            <app-file-upload (onFilesAdded)="onFilesAdded($event)">
+                <button class="btn btn-sm btn-icon btn-color-success btn-active-light-success me-1" title="Import sections">
+                    <span [inlineSVG]="'./assets/media/icons/duotune/arrows/arr091.svg'" class="svg-icon svg-icon-2"></span>
+                </button>
+            </app-file-upload>
+            <button mat-button class="btn btn-sm btn-light-primary dropdown-toggle" [matMenuTriggerFor]="menu">Add
+                section
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/article/sections/create">Simple Section</button>
+                <button mat-menu-item routerLink="/article/sections/create"
+                        [queryParams]="{type: articleSectionTypes.COMPLEX}">Complex Section
+                </button>
+                <button mat-menu-item routerLink="/article/sections/create"
+                        [queryParams]="{type: articleSectionTypes.CUSTOM}">Custom Section
+                </button>
+            </mat-menu>
+            <app-article-section-filters class="ms-1" (filtersChanged)="filtersChanged($event)" [filters]="filters"></app-article-section-filters>
+        </div>
+    </div>
+    <!-- end::Header -->
+    <!-- begin::Body -->
+    <div class="card-body py-3">
+        <app-article-sections-table [filter]="filters" (filterChanged)="filters = $event"></app-article-sections-table>
+    </div>
+    <!-- begin::Body -->
+</div>

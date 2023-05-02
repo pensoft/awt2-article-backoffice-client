@@ -1,0 +1,106 @@
+<form [formGroup]="formGroup">
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>{{'COMMON.name' | translate}}*</mat-label>
+                <input matInput formControlName="name" [placeholder]="'COMMON.name' | translate" autocomplete="nope"/>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>{{'COMMON.label' | translate}}*</mat-label>
+                <textarea matInput formControlName="label" [placeholder]="'COMMON.label' | translate"
+                          autocomplete="nope"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-slide-toggle formControlName="label_read_only" [color]="'primary'">Read only label</mat-slide-toggle>
+        </div>
+    </div>
+    <div class="separator mb-4"></div>
+    <mat-tab-group mat-align-tabs="start" (selectedTabChange)="tabChanged($event)">
+        <span class="asterisk">*</span>
+        <mat-tab *ngIf="!isCustom; else customJsonForm">
+            <ng-template mat-tab-label>
+                Form Builder <span class="asterisk" *ngIf="isSimple">*</span>
+            </ng-template>
+            <div class="pt-4">
+                <div class="col-md-12">
+                    <app-form-builder  [form]="form"
+                                      (change)="setFormData($event)"></app-form-builder>
+                </div>
+            </div>
+        </mat-tab>
+        <ng-template #customJsonForm>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    Schema
+                </ng-template>
+                <div class="pt-4">
+                    <div class="col-md-12">
+                        <mat-label [ngClass]="{'error': !formGroup.get('schema').valid}">Custom schema</mat-label>
+                        <div class="ngx-codemirror" [ngClass]="{'error': !formGroup.get('schema').valid}">
+                            <ngx-codemirror
+                                    [ngModel]="form"
+                                    (ngModelChange)="setFormData($event)"
+                                    [ngModelOptions]="{standalone: true}"
+                                    [options]="{
+                            lineNumbers: true,
+                            theme: 'eclipse',
+                            mode: 'application/ld+json',
+                            json: true,
+                            autoCloseBrackets: true
+                        }"
+                            ></ngx-codemirror>
+                        </div>
+                        <mat-hint class="codemirror-hint">Enter valid JSON format (Ex: {{ "{" }}  "parameter": 23 })</mat-hint>
+                    </div>
+                </div>
+            </mat-tab>
+        </ng-template>
+        <mat-tab *ngIf="isComplex">
+            <ng-template mat-tab-label>
+                Sections <span class="asterisk">*</span>
+            </ng-template>
+            <div class="pt-4">
+                <div class="col-md-12">
+                    <app-article-complex-section-form
+                            [selectedSections]="selectedSections"
+                            (change)="setSectionsData($event)"
+                            [currentSection]="section"></app-article-complex-section-form>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Template <span class="asterisk">*</span>
+            </ng-template>
+            <div class="pt-4" *ngIf="showHtml">
+                <ngx-codemirror
+                        [ngModel]="html"
+                        (ngModelChange)="templateChange($event)"
+                        [ngModelOptions]="{standalone: true}"
+                        [options]="{
+                                    lineNumbers: true,
+                                    theme: 'eclipse'
+                                  }"
+                ></ngx-codemirror>
+            </div>
+        </mat-tab>
+        <mat-tab *ngIf="isComplex">
+            <ng-template mat-tab-label>
+                Compatibility
+            </ng-template>
+            <div class="pt-4">
+                <app-article-section-compatibility
+                        (change)="setCompatibilityData($event)"
+                        (changeAllowCompatibility)="setAllowCompatibility($event)"
+                        [currentSection]="section"
+                        [currentlySelectedSections]="currentlySelectedSections"
+                ></app-article-section-compatibility>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</form>

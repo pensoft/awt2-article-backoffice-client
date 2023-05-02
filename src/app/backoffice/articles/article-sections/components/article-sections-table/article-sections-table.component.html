@@ -1,0 +1,68 @@
+<!-- begin::Table container -->
+<div class="table-responsive">
+    <!-- begin::Table -->
+    <table mat-table
+           class="table table-row-bordered align-middle gs-0 gy-4"
+           [dataSource]="dataSource"
+           (matSortChange)="sortChange($event)"
+           matSort>
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="ps-4 rounded-start">ID</th>
+            <td mat-cell *matCellDef="let element"><span class="ps-2">{{ element.id }}</span></td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let element">
+                <a [routerLink]="'/article/sections/update/' + element.id">{{ element.name }}</a>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="version">
+            <th mat-header-cell *matHeaderCellDef>Version</th>
+            <td mat-cell *matCellDef="let element">
+                v.{{ element.version }} <small *ngIf="element.version" class="text-muted ms-1">({{element.version_date | date}})</small>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef>Type</th>
+            <td mat-cell *matCellDef="let element">
+                {{ 'ARTICLE_SECTIONS.TYPE.'+element.type | translate }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="created_at">
+            <th mat-header-cell *matHeaderCellDef>Created At</th>
+            <td mat-cell *matCellDef="let element" class="text-muted"> {{ element.created_at | date }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef class="text-end rounded-end min-w-100px pe-3">Actions</th>
+            <td mat-cell *matCellDef="let element" class="text-end">
+                <button (click)="export(element.id)" class="btn btn-icon btn-bg-light btn-success btn-sm me-1">
+                            <span
+                                    [inlineSVG]="'./assets/media/icons/duotune/arrows/arr078.svg'"
+                                    class="svg-icon svg-icon-3"
+                            ></span>
+                </button>
+                <button [routerLink]="'/article/sections/update/' + element.id" class="btn btn-icon btn-bg-light btn-primary btn-sm me-1">
+                            <span
+                                    [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
+                                    class="svg-icon svg-icon-3"
+                            ></span>
+                </button>
+                <button (click)="delete(element)" class="btn btn-icon btn-bg-light btn-danger btn-sm">
+                          <span
+                                  [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
+                                  class="svg-icon svg-icon-3"
+                          ></span>
+                </button>
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="fw-bolder text-muted bg-light"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator (page)="pageChange($event)" [pageIndex]="filters.page - 1" [pageSize]="filters.pageSize"
+                   [length]="totalCount" [pageSizeOptions]="[10, 20, 50]"></mat-paginator>
+    <!-- end::Table -->
+</div>
+<!-- end::Table container -->

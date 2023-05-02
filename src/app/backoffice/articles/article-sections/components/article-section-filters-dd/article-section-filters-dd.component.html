@@ -1,0 +1,53 @@
+<div class="px-7 py-5">
+    <div class="fs-5 text-dark fw-bolder">Filter Options</div>
+</div>
+
+<div class="separator border-gray-200"></div>
+
+<div class="px-7 py-5" [formGroup]="formGroup">
+    <div class="mb-10">
+        <label class="form-label fw-bold">Type:</label>
+
+        <div>
+            <select
+                    class="form-select form-select-solid"
+                    data-kt-select2="true"
+                    data-placeholder="Select option"
+                    data-allow-clear="true"
+                    formControlName="type"
+            >
+                <option selected value="">-- All type of the section --</option>
+                <option *ngFor="let typeKey of articleSectionTypesKey" [value]="typeKey">{{articleSectionTypes[typeKey]}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="mb-10">
+        <!--<mat-form-field appearance="outline">
+            <mat-label>{{'COMMON.name' | translate}}</mat-label>
+            <input matInput formControlName="name" [placeholder]="'COMMON.name' | translate" autocomplete="nope"/>
+        </mat-form-field>-->
+        <label class="d-flex align-items-center form-label">Section name:</label>
+        <input name="sectionName" formControlName="name" class="form-control form-control-lg form-control-solid" />
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <button
+                type="reset"
+                class="btn btn-sm btn-white btn-active-light-primary me-2"
+                data-kt-menu-dismiss="true"
+                (click)="resetFilters()"
+        >
+            Clear
+        </button>
+
+        <button
+                type="submit"
+                class="btn btn-sm btn-primary"
+                data-kt-menu-dismiss="true"
+                (click)="applyFilters()"
+        >
+            Apply
+        </button>
+    </div>
+</div>

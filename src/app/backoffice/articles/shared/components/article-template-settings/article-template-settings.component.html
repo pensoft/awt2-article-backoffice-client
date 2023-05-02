@@ -1,0 +1,33 @@
+<form [formGroup]="articleSettingsForm">
+    <div class="row" *ngIf="rules.length">
+        <div class="col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>Template Rules</mat-label>
+                <mat-select [formControl]="option" placeholder="Template Rules" [compareWith]="compFn">
+                    <mat-option *ngFor="let rule of rules" [value]="rule">
+                        {{rule.description}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <button mat-flat-button (click)="add()" class="btn btn-success add-rule">Add Rule</button>
+        </div>
+    </div>
+    <div formArrayName="options" *ngFor="let control of selectedRulesForm.controls; let i = index; trackBy: trackByFn">
+        <div class="row">
+            <div class="col-md-12 d-flex">
+                <app-article-template-rule-config-wrapper
+                        style="flex: 1"
+                        [formGroupName]="i"
+                        [control]="control"
+                        [ruleKeys]="ruleKeys"
+                ></app-article-template-rule-config-wrapper>
+                <button (click)="removeRule(control.value, i)" class="btn btn-icon btn-bg-light btn-danger btn-sm ms-2 delete-rule">
+                    <span [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'" class="svg-icon svg-icon-3"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+

@@ -1,0 +1,10 @@
+<div>
+    <h2>{{ title }}</h2>
+    <div mat-dialog-content>
+        <app-user-form #userForm [roles]="userRoles" [defaultData]="defaultData"></app-user-form>
+    </div>
+    <mat-dialog-actions align="end">
+        <button mat-flat-button mat-dialog-close class="btn btn-light">Cancel </button>
+        <button mat-flat-button class="btn btn-success" [disabled]="!userForm.isFormValid" (click)="save()">Save</button>
+    </mat-dialog-actions>
+</div>

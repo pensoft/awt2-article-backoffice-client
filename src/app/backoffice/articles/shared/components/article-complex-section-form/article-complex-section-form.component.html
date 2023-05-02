@@ -1,0 +1,101 @@
+<div cdkDropListGroup class="row">
+    <div class="example-container all-sections col-md-4">
+        <h3>Available sections</h3>
+        <div class="box-search-option">
+            <div class="box-search">
+                <input
+                  #searchInput
+                  type="text"
+                  class="ps-2"
+                  [formControl]="searchSection"
+                  [placeholder]="'Search it'"
+                />
+                <div class="box-search-icon" (click)="filterItem('')">
+                    <button mat-icon-button class="search-button">
+                        <mat-icon class="mat-24" aria-label="Search icon">clear</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div
+                cdkDropList
+                [cdkDropListData]="filteredSectionOptions | async"
+                class="example-list "
+                cdkDropListSortingDisabled
+                [cdkDropListEnterPredicate]="noReturnPredicate"
+                (cdkDropListDropped)="drop($event)">
+            <div class="p-3" *ngIf="loading">Loading...</div>
+            <div class="example-box" *ngFor="let item of filteredSectionOptions | async" cdkDrag>
+                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                <div class="w-100 d-flex justify-content-between" >
+                    <span>{{item.name}}<small class="text-muted ms-1">({{item.id}})</small></span>
+                    <!--<small class="text-muted">v.{{ item.version }} ({{item.version_date | date}})</small>-->
+                </div>
+                <mat-form-field appearance="outline" class="version-dropdown me-1">
+                    <mat-select
+                            [(value)]="item.version"
+                            (selectionChange)="setSectionVersion(item, $event)"
+                            placeholder="Version"
+                    >
+                        <mat-option value="">{{'COMMON.LATEST_VERSION' | translate}}</mat-option>
+                        <mat-option *ngFor="let version of getSectionVersions(item.id)" [value]="version">
+                            v.{{ version }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+    <div class="example-container selected-sections col-md-8">
+        <h3>Selected sections</h3>
+        <div
+                cdkDropList
+                [cdkDropListData]="selected"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)">
+            <div class="example-box no-items" *ngIf="!selected.length">Drag and drop from sections</div>
+            <div class="example-box" *ngFor="let item of selected; let i = index" cdkDrag>
+                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                <div class="w-100 d-flex justify-content-between me-2">
+                    <span><strong>{{item.settings?.label || item.label}}</strong></span>
+                    <span>{{item.name}}<small class="text-muted ms-1">({{item.id}})</small></span>
+                    <!--<small class="text-muted">v.{{ item.version }} ({{item.version_date | date}})</small>-->
+                </div>
+                <mat-form-field appearance="outline" class="version-dropdown me-1">
+                    <mat-select
+                            [(value)]="item.version"
+                            (selectionChange)="setSectionVersion(item, $event.value, true, i)"
+                            placeholder="Version"
+                    >
+                        <mat-option value="">{{'COMMON.LATEST_VERSION' | translate}}</mat-option>
+                        <mat-option *ngFor="let version of getSectionVersions(item.id)" [value]="version">
+                            v.{{ version }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="d-flex">
+                    <button (click)="setSettings(item)"
+                            class="btn btn-icon btn-bg-light btn-sm me-1">
+                                  <span
+                                          [inlineSVG]="'./assets/media/icons/duotune/general/gen052.svg'"
+                                          class="svg-icon svg-icon-1"
+                                  ></span>
+                    </button>
+                    <button (click)="openLink(item.id)" class="btn btn-icon btn-bg-light btn-primary btn-sm me-1">
+                              <span
+                                [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
+                                class="svg-icon svg-icon-3"
+                              ></span>
+                    </button>
+                    <button (click)="removeItem(item, i)" class="btn btn-icon btn-bg-light btn-danger btn-sm">
+                              <span
+                                      [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
+                                      class="svg-icon svg-icon-3"
+                              ></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

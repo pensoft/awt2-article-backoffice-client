@@ -1,0 +1,23 @@
+<div class="card">
+    <!-- begin::Header -->
+    <div class="card-header border-0 pt-5">
+        <h3 class="card-title d-flex justify-content-center">
+            <span
+                    [inlineSVG]="'./assets/media/icons/duotune/layouts/lay001.svg'"
+                    class="svg-icon svg-icon-2x svg-icon-primary me-2"
+            ></span>
+            <span class="card-label fw-bolder fs-3">Update template</span>
+        </h3>
+    </div>
+    <!-- end::Header -->
+    <!-- begin::Body -->
+    <div class="card-body py-3">
+        <div class="separator mb-4"></div>
+        <app-article-template-form #templateForm [template]="template"></app-article-template-form>
+    </div>
+    <!-- begin::Body -->
+    <div class="card-footer d-flex justify-content-end">
+        <button mat-flat-button backButton class="btn btn-light me-2">Cancel </button>
+        <button mat-flat-button [disabled]="!templateForm.isValid" (click)="update()" class="btn btn-success">Save</button>
+    </div>
+</div>

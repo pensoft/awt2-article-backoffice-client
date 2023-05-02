@@ -1,0 +1,28 @@
+.mat-table {
+  tr.mat-header-row {
+    height: initial;
+  }
+}
+
+.btn {
+  &.mat-button,
+  &.mat-icon-button,
+  &.mat-stroked-button,
+  &.mat-flat-button {
+    line-height: initial;
+
+    &.dropdown-toggle {
+      padding-right: calc(1rem + 1px) !important;
+
+      &::after {
+        margin-left: 1em;
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
+}
+
+.mat-form-field {
+  width: 100%;
+}

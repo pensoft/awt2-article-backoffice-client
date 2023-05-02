@@ -1,0 +1,7 @@
+:host {
+  ::ng-deep {
+    .btn.btn-icon.btn-sm, .btn-group-sm > .btn.btn-icon {
+      height: calc(1.2em + 1.1rem + 2px);
+    }
+  }
+}

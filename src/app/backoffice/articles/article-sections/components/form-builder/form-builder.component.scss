@@ -1,0 +1,313 @@
+.formio.builder,
+.formio-dialog {
+  .btn {
+    // Remove border
+    &:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush):not(.btn-icon) {
+      border: 0;
+      padding: 0.375rem 0.75rem;
+      line-height: 2em;
+
+      &.formcomponent {
+        padding: 5px 5px 5px 8px;
+      }
+
+      &.component-settings-button {
+        float: right;
+        z-index: 1001;
+        margin: 4px 4px 0 0;
+        z-index: 1001;
+        box-shadow: 0 0 10px 1px rgb(48 113 169 / 60%) !important;
+
+        i {
+          font-size: 10px;
+          padding-right: 0;
+        }
+      }
+    }
+
+    &.btn-block {
+      display: block;
+      width: 100%;
+    }
+
+
+  }
+
+  .card {
+    border: 1px solid rgba(0, 0, 0, .125) !important;
+
+    // Header
+    .card-header {
+      min-height: initial;
+
+      background-color: rgba(0, 0, 0, .03);
+      border-bottom: 1px solid rgba(0, 0, 0, .125);
+
+      &:first-child {
+        padding: 0;
+      }
+
+      &.form-builder-group-header {
+        display: initial;
+      }
+    }
+  }
+
+  .formio-component {
+    .form-group {
+      margin-bottom: 1em;
+    }
+
+    /*    .formio-component-table {
+          .table > :not(:first-child) {
+            border-color: #000;
+            border-style: solid;
+            border-width: 1px;
+          }
+        }*/
+
+    .table {
+      margin-bottom: 0;
+
+      &.table-bordered {
+        border: 1px solid #dee2e6;
+        color: #212529;
+
+        thead th {
+          vertical-align: bottom;
+          border-bottom: 2px solid #dee2e6;
+        }
+
+        th,
+        td {
+          padding: 0.75rem;
+          vertical-align: top;
+          border: 1px solid #dee2e6;
+        }
+
+        td {
+          .form-group {
+            margin-bottom: 0 !important;
+          }
+        }
+
+        tbody {
+          .btn {
+            line-height: 1.5 !important;
+          }
+        }
+      }
+    }
+  }
+
+  .accordion {
+    .card {
+      overflow: hidden;
+
+      > .card-header {
+        border-radius: 0;
+        margin-bottom: -1px;
+      }
+
+      &:not(:last-of-type) {
+        border-bottom: 0;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      &:not(:first-of-type) {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+  }
+
+  .card-header-tabs {
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+
+  .alert-info {
+    opacity: .7;
+  }
+
+  .form-radio {
+    padding-left: 1.75rem;
+
+    &.radio {
+      .form-check-label {
+        font-size: 14px;
+        line-height: 18px;
+
+        .form-check-input {
+          width: 18px;
+          height: 18px;
+          margin-top: 0;
+          margin-left: -1.75rem;
+        }
+      }
+
+      .form-check-inline {
+        margin-right: 2.5rem;
+      }
+
+      .form-check {
+        margin-left: -1.75rem;
+      }
+    }
+  }
+
+  .form-check {
+    padding-left: 1.75rem;
+
+    &.checkbox {
+      .form-check-label {
+        font-size: 14px;
+        line-height: 18px;
+
+        .form-check-input {
+          width: 18px;
+          height: 18px;
+          margin-top: 0;
+          margin-left: -1.75rem;
+        }
+      }
+    }
+  }
+
+  .form-control {
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+
+
+  }
+
+  .formio-component-textarea {
+    .form-control {
+      height: auto;
+    }
+  }
+
+  .formio-component {
+    .col-form-label {
+      font-size: 14px;
+
+      padding-top: calc(0.375rem + 1px);
+      padding-bottom: calc(0.375rem + 1px);
+    }
+
+    .card {
+
+      .card-header {
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: rgba(0, 0, 0, .03);
+        border-bottom: 1px solid rgba(0, 0, 0, .125);
+      }
+
+      .card-body {
+        min-height: 1px;
+        padding: 1.25rem;
+      }
+
+    }
+
+  }
+
+  .required:after {
+    all: initial;
+  }
+
+  .formio-component-tabs {
+    .card-header {
+      .card-header-tabs {
+        margin-bottom: - 0.75rem;
+      }
+    }
+  }
+
+  .tooltip[x-placement=right] .tooltip-arrow {
+    border-right: none;
+  }
+
+  .formio-dialog-content {
+
+
+    .card {
+
+      .card-header {
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: rgba(0, 0, 0, .03);
+        border-bottom: 1px solid rgba(0, 0, 0, .125);
+      }
+
+      .card-body {
+        min-height: 1px;
+        padding: 1.25rem;
+      }
+
+    }
+
+
+
+
+  }
+
+}
+
+
+.builder-component {
+  position: relative;
+  min-height: 15px;
+
+  .btn {
+    &:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush):not(.btn-icon) {
+      border: 0;
+      padding: 0.375rem 0.75rem;
+      line-height: 2em;
+      &.component-settings-button {
+        float: right;
+        z-index: 1001;
+        margin: 4px 4px 0 0;
+        z-index: 1001;
+        box-shadow: 0 0 10px 1px rgb(48 113 169 / 60%) !important;
+
+        i {
+          font-size: 10px;
+          padding-right: 0;
+        }
+      }
+
+    }
+  }
+
+  .component-btn-group {
+    position: absolute;
+    right: 0;
+    z-index: 1000;
+    margin-top: -2px;
+    text-align: center;
+  }
+
+  .btn-group-xxs > .btn,
+  .btn-xxs {
+    padding: 2px 2px !important;
+    font-size: 10px;
+    line-height: 1.2em !important;
+    border-radius: 0;
+    width: 18px;
+    height: 18px;
+    /*background: none;*/
+  }
+}
+
+.fa-remove:before {
+  content: "\f1f8"
+}
+
+.fa-arrows:before {
+  content: "\f0b2"
+}

@@ -1,0 +1,17 @@
+{
+  "formio": {
+    "username": "%env.FORMIO_USERNAME%",
+    "password": "%env.FORMIO_PASSWORD%"
+  },
+  "production": true,
+
+  "authService": "%env.AUTH_SERVICE%",
+  "apiGatewayService": "%env.API_GATEWAY_SERVICE%",
+
+  "pkceClientId": "%env.ARTICLE_BACKOFFICE_PKCE_CLIENT_ID%",
+  "pgClientId": "%env.ARTICLE_BACKOFFICE_PG_CLIENT_ID%",
+  "pgClientSecret": "%env.ARTICLE_BACKOFFICE_PG_CLIENT_SECRET%",
+
+  "articleApiVersion": "1",
+  "eventDispatcherService": "%env.EVENT_DISPATCHER_SERVICE%"
+}

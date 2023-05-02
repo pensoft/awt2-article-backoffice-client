@@ -1,0 +1,23 @@
+.ngx-codemirror {
+  border: 1px solid #ccc;
+
+  &.error {
+    border-color: red;
+  }
+}
+
+mat-label.error {
+  color: red;
+}
+
+.codemirror-hint {
+  font-size: 75%;
+}
+
+:host {
+  ::ng-deep {
+    .CodeMirror {
+      height: 200px;
+    }
+  }
+}

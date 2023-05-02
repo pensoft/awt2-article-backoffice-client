@@ -1,0 +1,42 @@
+//
+// Main init file of global bootstrap and theme functions, mixins, variables and config
+//
+
+/* You can add global styles to this file, and also import other style files */
+@use '~@angular/material' as mat;
+
+@include mat.core();
+
+$my-primary: mat.define-palette(mat.$indigo-palette, 500);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$my-theme: mat.define-light-theme((
+        color: (
+                primary: $my-primary,
+                accent: $my-accent,
+        )
+));
+
+@include mat.all-component-themes($my-theme);
+
+// Custom functions & mixins
+@import './core/base/functions';
+@import './core/base/mixins';
+@import './core/components/mixins';
+@import './core/vendors/plugins/mixins';
+
+// Custom variables
+@import './components/variables.custom';
+@import './core/components/variables';
+
+// Bootstrap initializaton
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/utilities';
+
+// 3rd-Party plugins variables
+@import './core/vendors/plugins/variables';
+
+// Custom layout variables
+@import 'layout/variables';

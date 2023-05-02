@@ -1,0 +1,24 @@
+<div class="card">
+    <!-- begin::Header -->
+    <div class="card-header border-0 pt-5">
+        <h3 class="card-title d-flex justify-content-center">
+            <span
+                    [inlineSVG]="'./assets/media/icons/duotune/abstract/abs037.svg'"
+                    class="svg-icon svg-icon-2x svg-icon-primary me-2"
+            ></span>
+            <span class="card-label fw-bolder fs-3">Reference definitions list</span>
+        </h3>
+        <div class="card-toolbar">
+            <button class="btn btn-sm btn-light-primary" [routerLink]="'/references/definitions/create'">
+                <span [inlineSVG]="'./assets/media/icons/duotune/arrows/arr075.svg'" class="svg-icon svg-icon-3"></span>
+                New reference definition
+            </button>
+        </div>
+    </div>
+    <!-- end::Header -->
+    <!-- begin::Body -->
+    <div class="card-body py-3">
+        <app-reference-definitions-table></app-reference-definitions-table>
+    </div>
+    <!-- begin::Body -->
+</div>

@@ -1,0 +1,13 @@
+<button
+        type="button"
+        class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+        data-kt-menu-trigger="click"
+        data-kt-menu-placement="bottom-end"
+        data-kt-menu-flip="top-end"
+>
+      <span
+              [inlineSVG]="'./assets/media/icons/duotune/general/gen031.svg'"
+              class="svg-icon svg-icon-2"
+      ></span>
+</button>
+<app-article-section-filters-dd (filtersChanged)="filtersChanged.emit($event)" [filters]="filters"></app-article-section-filters-dd>

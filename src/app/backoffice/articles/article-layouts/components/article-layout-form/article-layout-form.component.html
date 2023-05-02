@@ -1,0 +1,135 @@
+<form [formGroup]="formGroup">
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="outline">
+                <mat-label>{{'COMMON.name' | translate}}*</mat-label>
+                <input matInput formControlName="name" [placeholder]="'COMMON.name' | translate" autocomplete="nope" />
+            </mat-form-field>
+        </div>
+        <div class="col-md-3">
+            <mat-form-field appearance="outline">
+                <mat-label>Citation Style*</mat-label>
+                <mat-select formControlName="citation_style_id" placeholder="Citation Style">
+                    <div class="box-search-option">
+                        <div class="box-search">
+                            <input
+                              type="text"
+                              class="ps-2"
+                              [formControl]="searchCitationStyle"
+                              [placeholder]="'Search it'"
+                            />
+                            <div class="box-search-icon" (click)="filterCitationStyleItem('')">
+                                <button mat-icon-button class="search-button">
+                                    <mat-icon class="mat-24" aria-label="Search icon">clear</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <mat-select-trigger *ngIf="selectedCitationStyle">
+                        <div class="w-100 d-flex justify-content-between">
+                            <span>{{selectedCitationStyle.title}}<small class="text-muted ms-1">({{selectedCitationStyle.id}})</small></span>
+                        </div>
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let citationStyle of filteredCitationStyleOptions | async" [value]="citationStyle.id">
+                        <div class="w-100 d-flex justify-content-between">
+                            <span>{{citationStyle.title}}<small class="text-muted ms-1">({{citationStyle.id}})</small></span>
+                        </div>
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-3">
+            <mat-form-field appearance="outline">
+                <mat-label>Article Template*</mat-label>
+                <mat-select formControlName="article_template_id" placeholder="Article Template">
+                    <div class="box-search-option">
+                        <div class="box-search">
+                            <input
+                              #searchInput
+                              type="text"
+                              class="ps-2"
+                              [formControl]="searchTemplate"
+                              [placeholder]="'Search it'"
+                            />
+                            <div class="box-search-icon" (click)="filterItem('')">
+                                <button mat-icon-button class="search-button">
+                                    <mat-icon class="mat-24" aria-label="Search icon">clear</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <mat-select-trigger *ngIf="selectedTemplate">
+                        <div class="w-100 d-flex justify-content-between">
+                            <span>{{selectedTemplate.name}}<small class="text-muted ms-1">({{selectedTemplate.id}})</small></span>
+                        </div>
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let template of filteredTemplateOptions | async" [value]="template.id">
+                        <div class="w-100 d-flex justify-content-between">
+                            <span>{{template.name}}<small class="text-muted ms-1">({{template.id}})</small></span>
+                        </div>
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-2">
+            <mat-form-field appearance="outline">
+                <mat-label>Version</mat-label>
+                <mat-select
+                        formControlName="article_template_version"
+                        placeholder="Version"
+                >
+                    <mat-option value="">{{'COMMON.LATEST_VERSION' | translate}}</mat-option>
+                    <mat-option *ngFor="let version of versions" [value]="version">
+                        {{ version }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <mat-label [ngClass]="{'error': !formGroup.get('settings').valid}">Layout settings*</mat-label>
+            <div class="ngx-codemirror" [ngClass]="{'error': !formGroup.get('settings').valid}">
+                <ngx-codemirror
+                        [ngModel]="layoutSettings"
+                        (ngModelChange)="setLayoutSettings($event)"
+                        [ngModelOptions]="{standalone: true}"
+                        [options]="{
+                            lineNumbers: true,
+                            theme: 'eclipse',
+                            mode: 'application/ld+json',
+                            json: true,
+                            autoCloseBrackets: true
+                        }"
+                ></ngx-codemirror>
+            </div>
+            <mat-hint class="codemirror-hint">Enter valid JSON format (Ex: {{ "{" }}  "parameter": 23 })</mat-hint>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <mat-label>Schema settings</mat-label>
+            <div class="ngx-codemirror">
+                <ngx-codemirror
+                        [ngModel]="schemaSettings"
+                        (ngModelChange)="setFormData($event, 'schema_settings')"
+                        [ngModelOptions]="{standalone: true}"
+                        [options]="{
+                                        lineNumbers: true,
+                                        theme: 'eclipse',
+                                        mode: 'javascript'
+                                      }"
+                ></ngx-codemirror>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5" *ngIf="selectedTemplate">
+        <div class="separator mb-4"></div>
+        <app-article-template-settings
+                (changes)="setFormData($event, 'rules')"
+                [defaultRules]="defaultRules"
+        ></app-article-template-settings>
+    </div>
+</form>

@@ -1,0 +1,27 @@
+<div class="card">
+    <!-- begin::Header -->
+    <div class="card-header border-0 pt-5">
+        <h3 class="card-title d-flex justify-content-center">
+            <span
+                    [inlineSVG]="'./assets/media/icons/duotune/general/gen025.svg'"
+                    class="svg-icon svg-icon-2x svg-icon-primary me-2"
+            ></span>
+            <span class="card-label fw-bolder fs-3">Update Section</span>
+        </h3>
+
+        <div class="card-toolbar" *ngIf="section.type !== articleSectionTypes.CUSTOM">
+            <button mat-flat-button class="btn btn-primary" (click)="sectionForm.showSchema()">Form Builder Schema</button>
+        </div>
+    </div>
+    <!-- end::Header -->
+    <!-- begin::Body -->
+    <div class="card-body py-3">
+        <div class="separator mb-4"></div>
+        <app-article-section-form #sectionForm [section]="section" [type]="section.type"></app-article-section-form>
+    </div>
+    <!-- begin::Body -->
+    <div class="card-footer d-flex justify-content-end">
+        <button mat-flat-button backButton class="btn btn-light me-2">Cancel </button>
+        <button mat-flat-button [disabled]="!sectionForm.isValid" (click)="update()" class="btn btn-success">Save</button>
+    </div>
+</div>

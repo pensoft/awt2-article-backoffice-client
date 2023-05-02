@@ -1,0 +1,12 @@
+.ngx-codemirror {
+  border: 1px solid #ccc;
+}
+
+:host {
+  ::ng-deep {
+    .CodeMirror {
+      height: 100px;
+    }
+  }
+}
+

@@ -1,0 +1,52 @@
+<form [formGroup]="formGroup">
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>{{'COMMON.title' | translate}}</mat-label>
+                <input matInput formControlName="title" [placeholder]="'COMMON.title' | translate"/>
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>{{'COMMON.type' | translate}}</mat-label>
+                <input matInput formControlName="type" [placeholder]="'COMMON.type' | translate"/>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="separator mb-4"></div>
+    <mat-tab-group mat-align-tabs="start" (selectedTabChange)="tabChanged($event)">
+        <mat-tab >
+            <ng-template mat-tab-label>
+                Form Builder <span class="asterisk">*</span>
+            </ng-template>
+            <div class="pt-4">
+                <div class="col-md-12">
+                    <app-form-builder  [form]="form"
+                                       (change)="setFormData($event)"></app-form-builder>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Settings
+            </ng-template>
+            <div class="pt-4" *ngIf="showSettings">
+                <div class="ngx-codemirror" [ngClass]="{'error': !formGroup.get('settings').valid}">
+                    <ngx-codemirror
+                            [ngModel]="settings"
+                            (ngModelChange)="setSettingsData($event)"
+                            [ngModelOptions]="{standalone: true}"
+                            [options]="{
+                                lineNumbers: true,
+                                theme: 'eclipse',
+                                mode: 'application/ld+json',
+                                json: true,
+                                autoCloseBrackets: true
+                            }"
+                    ></ngx-codemirror>
+                </div>
+                <mat-hint class="codemirror-hint">Enter valid JSON format (Ex: {{ "{" }}  "parameter": 23 })</mat-hint>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</form>

@@ -1,0 +1,22 @@
+<form [formGroup]="formGroup">
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>{{'COMMON.name' | translate}}*</mat-label>
+                <input matInput formControlName="name" [placeholder]="'COMMON.name' | translate" autocomplete="nope" />
+            </mat-form-field>
+        </div>
+    </div>
+    <hr />
+    <app-article-template-settings
+            (changes)="setFormData($event, 'rules')"
+            [defaultRules]="defaultRules"
+    ></app-article-template-settings>
+    <hr />
+    <div class="col-md-12">
+        <app-article-complex-section-form
+                [selectedSections]="selectedSections"
+                [isTemplate]="true"
+                (change)="setFormData($event)"></app-article-complex-section-form>
+    </div>
+</form>

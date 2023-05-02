@@ -1,0 +1,24 @@
+<!--begin::Form-->
+<form
+        class="form w-100"
+        novalidate="novalidate"
+        id="kt_login_signin_form"
+>
+    <!--begin::Heading-->
+    <div class="text-center mb-10">
+        <h1 class="text-dark mb-3">Sign In to the back office</h1>
+    </div>
+    <!--end::Heading-->
+
+
+    <div class="text-center">
+        <a class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5 cursor-pointer btn-primary" (click)="signIn()">
+            Login
+        </a>
+        <a class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5 cursor-pointer" [href]="registerUrl">
+            Register
+        </a>
+    </div>
+    <!--end::Action-->
+</form>
+<!--end::Form-->

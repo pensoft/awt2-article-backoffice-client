@@ -1,0 +1,35 @@
+<form [formGroup]="formGroup">
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>{{'COMMON.name' | translate}}</mat-label>
+                <input matInput formControlName="name" [placeholder]="'COMMON.name' | translate" autocomplete="nope" />
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>{{ 'SECTIONS.USERS.FORMS.ROLE' | translate}}</mat-label>
+                <mat-select formControlName="roleId" placeholder="{{ 'SECTIONS.USERS.FORMS.ROLE' | translate }}">
+                    <mat-option *ngFor="let role of roles" [value]="role.id">
+                        {{role.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>{{'SECTIONS.USERS.FORMS.EMAIL' | translate}}</mat-label>
+                <input matInput formControlName="email" [placeholder]="'SECTIONS.USERS.FORMS.EMAIL' | translate" autocomplete="off" />
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>{{'SECTIONS.USERS.FORMS.PASSWORD' | translate}}</mat-label>
+                <input matInput formControlName="password" [placeholder]="'SECTIONS.USERS.FORMS.PASSWORD' | translate" autocomplete="off" />
+            </mat-form-field>
+        </div>
+    </div>
+</form>
+

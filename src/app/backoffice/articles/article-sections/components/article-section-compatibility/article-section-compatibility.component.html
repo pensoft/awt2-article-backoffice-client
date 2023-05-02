@@ -1,0 +1,68 @@
+<div cdkDropListGroup class="row">
+
+    <div class="example-container col-md-4">
+        <h3 class="d-flex justify-content-between">Sections <mat-slide-toggle [formControl]="allowCompatibility" [color]="'primary'">Allow</mat-slide-toggle></h3>
+        <div
+                cdkDropList
+                [cdkDropListData]="sections"
+                class="example-list "
+                cdkDropListSortingDisabled
+                (cdkDropListDropped)="drop($event)">
+            <div class="p-3" *ngIf="loading">Loading...</div>
+            <div class="example-box"
+                 *ngFor="let item of sections"
+                 [cdkDragDisabled]="!allowCompatibilityValue"
+                 cdkDrag>
+                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                <div class="w-100 d-flex justify-content-between">
+                    <span>{{item.name}}<small class="text-muted ms-1">({{item.id}})</small></span>
+                    <small class="text-muted">v.{{ item.version }} ({{item.version_date | date}})</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="example-container selected-sections col-md-4">
+        <h3>Allow</h3>
+        <div
+                cdkDropList
+                [cdkDropListData]="selectedAllow"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)">
+            <div class="example-box no-items" *ngIf="!selectedAllow.length">All sections are allowed</div>
+            <div class="example-box"
+                 *ngFor="let item of selectedAllow; let i = index"
+                 [cdkDragDisabled]="isDisabled(item) || !allowCompatibilityValue"
+                 cdkDrag>
+                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                <div class="w-100 d-flex justify-content-between me-2">
+                    <span>{{item.name}}<small class="text-muted ms-1">({{item.id}})</small></span>
+                    <small class="text-muted">v.{{ item.version }} ({{item.version_date | date}})</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="example-container selected-sections col-md-4">
+        <h3 class="d-flex justify-content-between">Deny <mat-slide-toggle [formControl]="denyAll" [disabled]="!allowCompatibilityValue" [color]="'primary'">Deny All</mat-slide-toggle></h3>
+        <div
+                cdkDropList
+                [cdkDropListData]="selectedDeny"
+                class="example-list"
+                [cdkDropListEnterPredicate]="denyPredicate(denyAllStatus)"
+                (cdkDropListDropped)="drop($event)"
+                [class.deny]="!denyAllStatus"
+        >
+            <div class="example-box no-items" *ngIf="!selectedDeny.length">No sections are denied</div>
+            <div class="example-box"
+                 *ngFor="let item of selectedDeny; let i = index"
+                 [cdkDragDisabled]="!allowCompatibilityValue"
+                 cdkDrag>
+                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                <div class="w-100 d-flex justify-content-between me-2">
+                    <span>{{item.name}}<small class="text-muted ms-1">({{item.id}})</small></span>
+                    <small class="text-muted">v.{{ item.version }} ({{item.version_date | date}})</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
